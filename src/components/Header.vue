@@ -11,14 +11,13 @@
 import Btn from '../base/Btn.vue';
 
 export default {
-  // name: 'header',
   components: {
     Btn,
   },
 };
 </script>
 
-<style module>
+<style lang="scss" module>
 .header {
   color: #666;
   height: 100px;
@@ -32,23 +31,22 @@ export default {
     center no-repeat;
   background-size: auto 50%;
   z-index: 100;
-
-}
-.left {
-  font-size: 28px;
-  height: 30px;
-  line-height: 30px;
-  margin: 17px 0 0 18px;
-}
-.btnDownload {
-  float: right;
-  font-size: 24px;
-  border-width: 0;
-  height: 56px;
-  line-height: 56px;
-  min-width: 120px;
-  padding: 0;
-  border-radius: 4px;
-  margin: 28px 24px 0 0;
+  .left {
+    font-size: 28px;
+    height: 30px;
+    line-height: 30px;
+    margin: 17px 0 0 18px;
+  }
+  .btnDownload {
+    float: right;
+    font-size: 24px;
+    border-width: 0;
+    height: 56px;
+    line-height: 56px;
+    min-width: 120px;
+    padding: 0;
+    border-radius: 4px;
+    margin: 28px 24px 0 0;
+  }
 }
 </style>

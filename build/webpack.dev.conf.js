@@ -20,6 +20,29 @@ const baseCssRules = [
     loader: 'css-loader',
     options: {
       sourceMap: true,
+    },
+  },
+  {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 40,
+      remPrecision: 8,
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true,
+    },
+  },
+];
+
+const moduleCssRules = [
+  'vue-style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true,
       modules: true,
       localIdentName: '[local]_[hash:base64:5]',
     },
@@ -45,18 +68,36 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     rules: [
       {
         test: /\.css$/,
-        use: baseCssRules,
+        oneOf: [
+          {
+            resourceQuery: /module/,
+            use: moduleCssRules,
+          },
+          {
+            use: baseCssRules,
+          }
+        ],
       },
       {
         test: /\.scss/,
-        use: [
-          ...baseCssRules,
+        oneOf: [
           {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
+            resourceQuery: /module/,
+            use: [...moduleCssRules, {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            }],
           },
+          {
+            use: [...baseCssRules, {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            }],
+          }
         ],
       },
     ],
